@@ -28,13 +28,14 @@ export const Actions: FC<ActionsProps> = ({
     const reset = () => changeCount(startCount || 0)
     const setAndSave = () => {
         changeCount(startCount || 0)
-        // setSettingMode && !error && setSettingMode(false)
         localStorage.setItem("maxCount", JSON.stringify(maxCount));
         localStorage.setItem("startCount", JSON.stringify(startCount));
     }
 
     const isDisabled = (startCount !== undefined && (maxCount <= startCount)) || (startCount !== undefined && startCount < 0)
         || error;
+    const incrementDisabled = count === maxCount || isDisabled || typeof count === 'string'
+    const resetDisabled = (startCount !== undefined ? count === startCount : count === minCount) || isDisabled || typeof count === 'string'
     return (
         <div className={styles.actions}>
             {
@@ -47,10 +48,10 @@ export const Actions: FC<ActionsProps> = ({
                     )
                     : (
                         <>
-                            <Button disabled={count === maxCount || isDisabled || typeof count === 'string'}
+                            <Button disabled={incrementDisabled}
                                     callback={increment}
                                     title="INCREMENT"/>
-                            <Button disabled={count === startCount || isDisabled || typeof count === 'string'}
+                            <Button disabled={resetDisabled}
                                     callback={reset}
                                     title="RESET"/>
                         </>)
