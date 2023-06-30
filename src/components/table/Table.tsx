@@ -1,6 +1,7 @@
 import {ChangeEvent, Dispatch, FC, SetStateAction} from "react";
 import styles from "./Table.module.css";
 import Input from "../input/Input";
+import {TableType} from "../counterTwoInOne/CounterTwoInOne";
 
 interface TableProps {
     type?: string
@@ -10,10 +11,10 @@ interface TableProps {
     startCount?: number
     changeMaxCount?: (count: number) => void
     changeStartCount?: (count: number) => void
+    changeType?: Dispatch<SetStateAction<TableType>>
     error?: boolean
     setError?: Dispatch<SetStateAction<boolean>>
     changeCount?: (count: number | string) => void
-
 }
 
 export const Table: FC<TableProps> = ({
@@ -22,6 +23,7 @@ export const Table: FC<TableProps> = ({
                                           startCount,
                                           changeMaxCount,
                                           changeStartCount,
+                                          changeType,
                                           error,
                                           setError,
                                           changeCount
