@@ -41,10 +41,12 @@ export const Actions: FC<ActionsProps> = ({
         changeType && changeType("setting")
     }
 
-    const isDisabled = (startCount !== undefined && (maxCount <= startCount)) || (startCount !== undefined && startCount < 0)
-        || error;
-    const incrementDisabled = count === maxCount || isDisabled || typeof count === 'string'
-    const resetDisabled = (startCount !== undefined ? count === startCount : count === minCount) || isDisabled || typeof count === 'string'
+    const isDisabled = (startCount !== undefined && (maxCount <= startCount))
+        || (startCount !== undefined && startCount < 0) || error;
+    const incrementDisabled = count === maxCount || isDisabled
+        || typeof count === 'string'
+    const resetDisabled = (startCount !== undefined ? count === startCount
+        : count === minCount) || isDisabled || typeof count === 'string'
 
     if (type === "setting") {
         return (
@@ -74,14 +76,15 @@ export const Actions: FC<ActionsProps> = ({
         </div>)
     }
 
-    return (<div className={styles.actions}>
-
-        <Button disabled={incrementDisabled}
-                callback={increment}
-                title="INCREMENT"/>
-        <Button disabled={resetDisabled}
-                callback={reset}
-                title="RESET"/>
-    </div>)
+    return (
+        <div className={styles.actions}>
+            <Button disabled={incrementDisabled}
+                    callback={increment}
+                    title="INCREMENT"/>
+            <Button disabled={resetDisabled}
+                    callback={reset}
+                    title="RESET"/>
+        </div>
+    )
 
 }
