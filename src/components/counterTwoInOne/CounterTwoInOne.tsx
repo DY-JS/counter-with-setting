@@ -26,7 +26,6 @@ const CounterTwoInOne = () => {
     return (
         <div className={styles.counter}>
            <Table
-               minCount={minCount}
                count={count}
                changeCount={setCount}
                maxCount={maxCount}
@@ -36,7 +35,6 @@ const CounterTwoInOne = () => {
                error={error}
                setError={setError}
                type={type}
-               changeType={setType}
 
            />
             <Actions
@@ -48,7 +46,6 @@ const CounterTwoInOne = () => {
                 startCount={startCount}
                 changeCount={setCount}
                 error={error}
-                setError={setError}
             />
         </div>
     );

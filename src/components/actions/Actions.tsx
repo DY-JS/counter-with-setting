@@ -12,7 +12,6 @@ interface ActionsProps {
     startCount?: number
     changeCount: (count: number) => void
     error?: boolean
-    setError?: Dispatch<SetStateAction<boolean>>
 }
 
 export const Actions: FC<ActionsProps> = ({
@@ -24,7 +23,6 @@ export const Actions: FC<ActionsProps> = ({
                                               startCount,
                                               changeCount,
                                               error,
-                                              setError,
                                           }) => {
 
     const increment = () => changeCount(+count + 1)

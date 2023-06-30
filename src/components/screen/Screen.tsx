@@ -35,7 +35,6 @@ const Screen: FC<ScreenProps> = ({
             <Table
                 type={type}
                 count={count}
-                minCount={minCount}
                 startCount={startCount}
                 maxCount={maxCount}
                 changeMaxCount={changeMaxCount}
@@ -52,7 +51,6 @@ const Screen: FC<ScreenProps> = ({
                 startCount={startCount}
                 changeCount={changeCount}
                 error={error}
-                setError={setError}
             />
         </div>
     );
