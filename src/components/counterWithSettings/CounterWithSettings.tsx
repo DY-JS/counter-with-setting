@@ -7,7 +7,6 @@ const CounterWithSettings = () => {
     const [maxCount, setMaxCount] = useState<number>(minCount);
     const [startCount, setStartCount] = useState<number>(minCount)
     const [count, setCount] = useState<number | string>(minCount)
-    //const [settingMode, setSettingMode] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
 
     useEffect(() => {
