@@ -5,13 +5,13 @@ import CounterWithSettings from "./components/counterWithSettings/CounterWithSet
 import CounterTwoInOne from "./components/counterTwoInOne/CounterTwoInOne";
 
 function App() {
-  return (
-    <div className="App">
-      <Counter/>
-      <CounterWithSettings/>
-        <CounterTwoInOne/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Counter/>
+            <CounterWithSettings/>
+            <CounterTwoInOne/>
+        </div>
+    );
 }
 
 export default App;
