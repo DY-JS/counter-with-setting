@@ -20,11 +20,8 @@ export const Actions: FC<ActionsProps> = ({
                                               maxCount,
                                               startCount,
                                               changeCount,
-
-
                                               error,
                                               setError,
-
                                           }) => {
 
     const increment = () => changeCount(+count + 1)
@@ -53,7 +50,7 @@ export const Actions: FC<ActionsProps> = ({
                             <Button disabled={count === maxCount || isDisabled || typeof count === 'string'}
                                     callback={increment}
                                     title="INCREMENT"/>
-                            <Button disabled={count === minCount || isDisabled || typeof count === 'string'}
+                            <Button disabled={count === startCount || isDisabled || typeof count === 'string'}
                                     callback={reset}
                                     title="RESET"/>
                         </>)
