@@ -37,7 +37,7 @@ export const Table: FC<TableProps> = ({
     }
 
     const settingProcess = () => {
-        changeCount && changeCount('Set values and press SET')
+        changeCount && changeCount(`Set values and press 'SET'`)
     }
 
     return (
@@ -64,7 +64,7 @@ export const Table: FC<TableProps> = ({
                 )
                 : (
                     <div className={finalStyle}>
-                        {error ? "Incorrect value" : count}
+                        {error ? "Incorrect value!" : count}
                     </div>
 
                 )}

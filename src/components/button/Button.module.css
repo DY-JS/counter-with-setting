@@ -11,13 +11,13 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: all ease-in-out .3s;
+    transition: all ease-in-out .2s;
 }
 
 .button:hover {
     background-color: #2ea0be;
     color: aliceblue;
-    transition: all ease-in-out .3s;
+    transition: all ease-in-out .2s;
 }
 
 .button:disabled{
