@@ -4,7 +4,7 @@ import {Button} from "../button/Button";
 
 interface ActionsProps {
     type?: string
-    count: number
+    count: number | string
     minCount: number
     maxCount: number
     startCount?: number
@@ -29,13 +29,17 @@ export const Actions: FC<ActionsProps> = ({
                                               // changeMaxCount,
                                               // changeStartCount
                                           }) => {
-    const increment = () => changeCount(count + 1)
+
+    console.log('settingMode', settingMode)
+
+    const increment = () => changeCount(+count + 1)
     const reset = () => changeCount(startCount || 0)
     const setAndSave = () => {
         changeCount(startCount || 0)
         setSettingMode && !error && setSettingMode(false)
         localStorage.setItem("maxCount", JSON.stringify(maxCount));
         localStorage.setItem("startCount", JSON.stringify(startCount));
+        console.log(settingMode)
 
     }
 
@@ -58,9 +62,11 @@ export const Actions: FC<ActionsProps> = ({
                     )
                     : (
                         <>
-                            <Button disabled={count === maxCount || isDisabled || settingMode} callback={increment}
+                            <Button disabled={count === maxCount || isDisabled || typeof count === 'string'}
+                                    callback={increment}
                                     title="INCREMENT"/>
-                            <Button disabled={count === minCount || isDisabled || settingMode} callback={reset}
+                            <Button disabled={count === minCount || isDisabled || typeof count === 'string'}
+                                    callback={reset}
                                     title="RESET"/>
                         </>)
             }

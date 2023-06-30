@@ -4,16 +4,15 @@ import Input from "../input/Input";
 
 interface TableProps {
     type?: string
-    count: number
+    count: number | string
     minCount?: number
     maxCount: number
     startCount?: number
     changeMaxCount?: (count: number) => void
     changeStartCount?: (count: number) => void
-    settingMode?: boolean
-    setSettingMode?: Dispatch<SetStateAction<boolean>>
     error?: boolean
     setError?: Dispatch<SetStateAction<boolean>>
+    changeCount?: (count: number | string) => void
 
 }
 
@@ -23,37 +22,23 @@ export const Table: FC<TableProps> = ({
                                           startCount,
                                           changeMaxCount,
                                           changeStartCount,
-                                          settingMode,
-                                          setSettingMode,
                                           error,
-                                          setError
+                                          setError,
+                                          changeCount
                                       }) => {
     const finalStyle = `${styles.table} ${count === maxCount || error ? styles.max : ''}`;
-    //const isError = (maxCount === startCount) || (startCount !== undefined && startCount < 0);
+
     if (
-        // settingMode && (
         (startCount !== undefined && startCount < 0) ||
-        (startCount !== undefined && maxCount <= startCount))
-        // )
-    {
+        (startCount !== undefined && maxCount <= startCount)) {
         setError && setError(true)
     } else {
         setError && setError(false)
     }
 
     const settingProcess = () => {
-        setSettingMode && setSettingMode(true)
+        changeCount && changeCount('Set values and press SET')
     }
-
-    console.log('s= ', settingMode, 'e= ', error)
-    //
-    // if (settingMode && !error && type !== "setting") {
-    //     return (
-    //         <div className={styles.table}>
-    //             "Input values and click SET"
-    //         </div>
-    //     );
-    //}
 
     return (
         <>
@@ -72,16 +57,14 @@ export const Table: FC<TableProps> = ({
                             value={startCount || 0}
                             title={"Input start value"}
                             onChange={changeStartCount}
-                            onFocus={setSettingMode}
+                            onFocus={settingProcess}
                             isError={error}
                         />
                     </div>
                 )
                 : (
                     <div className={finalStyle}>
-                        {error ? "Incorrect value" : `Count: ${count}`}
-                        {/*{settingMode && error ? "Input values and click SET" :*/}
-                        {/*    error ? "Incorrect value" : `Count: ${count}`}*/}
+                        {error ? "Incorrect value" : count}
                     </div>
 
                 )}

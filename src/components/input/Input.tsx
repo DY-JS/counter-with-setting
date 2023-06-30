@@ -1,4 +1,4 @@
-import React, {ChangeEvent, Dispatch, FC, SetStateAction} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import styles from "./Input.module.css";
 
 interface InputProps {
@@ -6,20 +6,20 @@ interface InputProps {
     title?: string
     value: number
     onChange?: (num: number) => void
-    onFocus?: Dispatch<SetStateAction<boolean>>
+    onFocus?: () => void
     isError?: boolean
 }
 
 const Input: FC<InputProps> = ({type, title, value, onChange, onFocus, isError}) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-       onChange && onChange(Number(e.currentTarget.value))
+        onChange && onChange(Number(e.currentTarget.value))
     }
 
     const handleFocus = () => {
-        onFocus && onFocus(true)
+        if (onFocus) onFocus()
     }
 
-    const inputStyle = `${styles.input} ${isError ? styles.error: ''}`
+    const inputStyle = `${styles.input} ${isError ? styles.error : ''}`
 
     return (
         <div className={styles.inputWrapper}>
@@ -30,7 +30,6 @@ const Input: FC<InputProps> = ({type, title, value, onChange, onFocus, isError})
                 onChange={handleChange}
                 onFocus={handleFocus}
                 className={inputStyle}
-                //className={isError ? styles.error : ''}
             />
         </div>
     );

@@ -6,15 +6,13 @@ import styles from "./Screen.module.css"
 
 interface ScreenProps {
     type?: string
-    count: number
-    changeCount: (count: number) => void
+    count: number | string
+    changeCount: (count: number | string) => void
     minCount: number
     maxCount: number
     changeMaxCount?: (count: number) => void
     startCount: number
     changeStartCount?: (count: number) => void
-    settingMode?: boolean
-    setSettingMode?: Dispatch<SetStateAction<boolean>>
     error?: boolean
     setError?: Dispatch<SetStateAction<boolean>>
 }
@@ -28,8 +26,6 @@ const Screen: FC<ScreenProps> = ({
                                      changeMaxCount,
                                      startCount,
                                      changeStartCount,
-                                     settingMode,
-                                     setSettingMode,
                                      error,
                                      setError
 
@@ -44,10 +40,9 @@ const Screen: FC<ScreenProps> = ({
                 maxCount={maxCount}
                 changeMaxCount={changeMaxCount}
                 changeStartCount={changeStartCount}
-                 settingMode={settingMode}
-                setSettingMode={setSettingMode}
                 error={error}
                 setError={setError}
+                changeCount={changeCount}
             />
             <Actions
                 type={type}
@@ -56,8 +51,6 @@ const Screen: FC<ScreenProps> = ({
                 minCount={minCount}
                 startCount={startCount}
                 changeCount={changeCount}
-                settingMode={settingMode}
-                setSettingMode={setSettingMode}
                 error={error}
                 setError={setError}
             />

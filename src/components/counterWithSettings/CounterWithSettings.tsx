@@ -6,8 +6,8 @@ const CounterWithSettings = () => {
     const minCount = 0;
     const [maxCount, setMaxCount] = useState<number>(minCount);
     const [startCount, setStartCount] = useState<number>(minCount)
-    const [count, setCount] = useState<number>(minCount)
-    const [settingMode, setSettingMode] = useState<boolean>(false)
+    const [count, setCount] = useState<number | string>(minCount)
+    //const [settingMode, setSettingMode] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
 
     useEffect(() => {
@@ -32,8 +32,6 @@ const CounterWithSettings = () => {
                 changeMaxCount={setMaxCount}
                 startCount={startCount}
                 changeStartCount={setStartCount}
-                settingMode={settingMode}
-                setSettingMode={setSettingMode}
                 error={error}
                 setError={setError}
             />
