@@ -1,0 +1,27 @@
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 400;
+    width: 120px;
+    height: 30px;
+    background-color: #61dafb;
+    color: #5b5151;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+}
+
+.button:hover {
+    background-color: #2ea0be;
+    color: aliceblue;
+    transition: all ease-in-out .3s;
+}
+
+.button:disabled{
+    background-color: #bebebe;
+    color: #282c34;
+}
+

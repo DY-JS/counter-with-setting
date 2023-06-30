@@ -1,0 +1,13 @@
+.actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    width: 75%;
+    margin-top: 20px;
+    padding: 10px 0;
+    color: aliceblue;
+    border: 2px solid #61dafb;
+    border-radius: 5px;
+}
