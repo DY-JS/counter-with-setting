@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Table} from "../table/Table";
+
 import styles from "./CounterTwoInOne.module.css";
 import {Actions} from "../actions/Actions";
+import {CounterTable} from "../table/CounterTable";
 
 export type TableType = "setting" | "counter"
 
@@ -25,27 +26,27 @@ const CounterTwoInOne = () => {
     }, [])
     return (
         <div className={styles.counter}>
-           <Table
-               count={count}
-               changeCount={setCount}
-               maxCount={maxCount}
-               changeMaxCount={setMaxCount}
-               startCount={startCount}
-               changeStartCount={setStartCount}
-               error={error}
-               setError={setError}
-               type={type}
+           <CounterTable
+               // count={count}
+               // changeCount={setCount}
+               // maxCount={maxCount}
+               // changeMaxCount={setMaxCount}
+               // startCount={startCount}
+               // changeStartCount={setStartCount}
+               // error={error}
+               // setError={setError}
+               // type={type}
 
            />
             <Actions
-                type={type}
-                changeType={setType}
-                count={count}
-                maxCount={maxCount}
-                minCount={minCount}
-                startCount={startCount}
-                changeCount={setCount}
-                error={error}
+                //type={type}
+                // changeType={setType}
+                // count={count}
+                // maxCount={maxCount}
+                // minCount={minCount}
+                // startCount={startCount}
+                // changeCount={setCount}
+                // error={error}
             />
         </div>
     );

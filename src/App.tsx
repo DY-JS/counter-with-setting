@@ -8,8 +8,8 @@ function App() {
     return (
         <div className="App">
             <Counter/>
-            <CounterWithSettings/>
-            <CounterTwoInOne/>
+            {/*<CounterWithSettings/>*/}
+            {/*<CounterTwoInOne/>*/}
         </div>
     );
 }

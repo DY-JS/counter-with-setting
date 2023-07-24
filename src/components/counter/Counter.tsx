@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import {Table} from "../table/Table";
+// import {CounterTable} from "../table/CounterTable";
 import styles from "./Counter.module.css";
 import {Actions} from "../actions/Actions";
-
-
+import {useSelector} from "react-redux";
+import {AppRootStore} from "../../state/state";
+import {CounterState} from "../../state/counter/counterReducer";
+import {CounterTable} from "../table/CounterTable";
 
 const Counter = () => {
-    const minCount = 0;
-    const maxCount = 5;
+    // const {count, minCount, maxCount, type} = useSelector<AppRootStore, CounterState>(state => state.counter)
 
-    const [count, setCount] = useState<number>(minCount)
     return (
         <div className={styles.counter}>
-           <Table count={count} maxCount={maxCount}/>
-            <Actions count={count} minCount={minCount} maxCount={maxCount} changeCount={setCount}/>
+          <CounterTable type={"counter"} />
+            <Actions />
         </div>
     );
 };

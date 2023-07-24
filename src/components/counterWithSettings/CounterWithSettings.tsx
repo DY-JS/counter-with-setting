@@ -24,23 +24,23 @@ const CounterWithSettings = () => {
         <div className={styles.main}>
             <Screen
                 type="setting"
-                minCount={minCount}
-                count={count}
-                changeCount={setCount}
-                maxCount={maxCount}
-                changeMaxCount={setMaxCount}
-                startCount={startCount}
-                changeStartCount={setStartCount}
-                error={error}
-                setError={setError}
+                // minCount={minCount}
+                // count={count}
+                // changeCount={setCount}
+                // maxCount={maxCount}
+                // changeMaxCount={setMaxCount}
+                // startCount={startCount}
+                // changeStartCount={setStartCount}
+                // error={error}
+                // setError={setError}
             />
             <Screen
-                count={count}
-                maxCount={maxCount}
-                startCount={startCount}
-                minCount={minCount}
-                changeCount={setCount}
-                error={error}
+                // count={count}
+                // maxCount={maxCount}
+                // startCount={startCount}
+                // minCount={minCount}
+                // changeCount={setCount}
+                // error={error}
             />
         </div>
     );
