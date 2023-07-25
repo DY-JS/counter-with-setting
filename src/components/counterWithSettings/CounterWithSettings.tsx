@@ -1,47 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import styles from "./CounterWithSettings.module.css";
 import Screen from "../screen/Screen";
+import {
+    changeCountAC,
+    changeMaxCountAC,
+    changeStartCountAC
+} from "../../state/customCounter/customCounterActionCreators";
+import {useDispatch} from "react-redux";
 
 const CounterWithSettings = () => {
-    const minCount = 0;
-    const [maxCount, setMaxCount] = useState<number>(minCount);
-    const [startCount, setStartCount] = useState<number>(minCount)
-    const [count, setCount] = useState<number | string>(minCount)
-    const [error, setError] = useState<boolean>(false)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const maxCountFromLS: string | null = localStorage.getItem("maxCount")
-        maxCountFromLS ? setMaxCount(Number(maxCountFromLS)) : setMaxCount(0)
+        maxCountFromLS && dispatch(changeMaxCountAC(Number(maxCountFromLS)))
 
         const startCountFromLS: string | null = localStorage.getItem("startCount")
         if (startCountFromLS) {
-            setStartCount(Number(startCountFromLS));
-            setCount(Number(startCountFromLS))
+            dispatch(changeStartCountAC(Number(startCountFromLS)))
+            dispatch(changeCountAC(Number(startCountFromLS)))
         }
     }, [])
 
     return (
         <div className={styles.main}>
-            <Screen
-                type="setting"
-                // minCount={minCount}
-                // count={count}
-                // changeCount={setCount}
-                // maxCount={maxCount}
-                // changeMaxCount={setMaxCount}
-                // startCount={startCount}
-                // changeStartCount={setStartCount}
-                // error={error}
-                // setError={setError}
-            />
-            <Screen
-                // count={count}
-                // maxCount={maxCount}
-                // startCount={startCount}
-                // minCount={minCount}
-                // changeCount={setCount}
-                // error={error}
-            />
+            <Screen type="setting"/>
+            <Screen type="counter"/>
         </div>
     );
 };

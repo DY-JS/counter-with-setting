@@ -11,7 +11,6 @@ export const initialState: CounterState = {
     count: 0,
     minCount: 0,
     maxCount: 5,
-    // type:'counter'
 }
 
 export const counterReducer = (state = initialState, action: any) => {

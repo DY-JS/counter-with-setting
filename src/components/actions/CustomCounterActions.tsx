@@ -1,41 +1,32 @@
 import styles from "./Actions.module.css";
-import {Dispatch, FC, SetStateAction} from "react";
 import {Button} from "../button/Button";
 import {TableType} from "../counterTwoInOne/CounterTwoInOne";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStore} from "../../state/state";
-import {CounterState} from "../../state/counter/counterReducer";
-import {incrementAC, resetAC} from "../../state/counter/counterActionCreators";
+
+import {
+    changeCountAC,
+    incrementAC,
+    resetAC
+} from "../../state/customCounter/customCounterActionCreators";
+import {CustomCounterState} from "../../state/customCounter/customCounterReducer";
 
 
 interface ActionsProps {
     type?: string
 }
-//     changeType?: Dispatch<SetStateAction<TableType>>
-//     count: number | string
-//     minCount: number
-//     maxCount: number
-//     startCount?: number
-//     changeCount: (count: number) => void
-//     error?: boolean
-// }
 
-type Types = "common" | "setting" | "counter";
-
-export const Actions = ({type}:ActionsProps) => {
-    const {count, minCount, maxCount} = useSelector<AppRootStore, CounterState>(state => state.counter)
+export const CustomCounterActions = ({type}:ActionsProps) => {
+    const {count, minCount, maxCount, startCount, error} = useSelector<AppRootStore, CustomCounterState>(state => state.customCounter)
     const dispatch = useDispatch()
-    const startCount = 0
-    // const tableType: Types = "common";
-    const error = false
 
     const increment = () => dispatch(incrementAC())
     const reset = () => dispatch(resetAC())
 
     const setAndSave = () => {
-        //changeCount(startCount || 0)
-        // localStorage.setItem("maxCount", JSON.stringify(maxCount));
-        // localStorage.setItem("startCount", JSON.stringify(startCount));
+        dispatch(changeCountAC(startCount))
+        localStorage.setItem("maxCount", JSON.stringify(maxCount));
+        localStorage.setItem("startCount", JSON.stringify(startCount));
         //changeType && changeType("counter")
     }
 
@@ -44,12 +35,11 @@ export const Actions = ({type}:ActionsProps) => {
     // }
 
 
-    const isDisabled = (startCount !== undefined && (maxCount <= startCount))
-        || (startCount !== undefined && startCount < 0) || error;
+    const isDisabled =  (startCount < 0) || error;
     const incrementDisabled = count === maxCount || isDisabled
         || typeof count === 'string'
-    const resetDisabled = (startCount !== undefined ? count === startCount
-        : count === minCount) || isDisabled || typeof count === 'string'
+    const resetDisabled = (count === startCount || ( count === minCount)
+        || isDisabled || typeof count === 'string');
 
     if (type === "setting") {
         return (
@@ -89,5 +79,4 @@ export const Actions = ({type}:ActionsProps) => {
                     title="RESET"/>
         </div>
     )
-
 }
