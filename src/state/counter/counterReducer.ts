@@ -4,7 +4,6 @@ export interface CounterState {
     count: number|string,
     minCount: number,
     maxCount: number,
-    // type: string
 }
 
 export const initialState: CounterState = {

@@ -2,22 +2,25 @@ import styles from "./Actions.module.css";
 import {Button} from "../button/Button";
 import {TableType} from "../counterTwoInOne/CounterTwoInOne";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStore} from "../../state/state";
 
 import {
     changeCountAC,
     incrementAC,
     resetAC
 } from "../../state/customCounter/customCounterActionCreators";
-import {CustomCounterState} from "../../state/customCounter/customCounterReducer";
+import {Dispatch, SetStateAction} from "react";
 
 
 interface ActionsProps {
     type?: string
+    changeType?: Dispatch<SetStateAction<TableType>>
+    count: number | string
+    maxCount: number
+    startCount: number
+    error: boolean
 }
 
-export const CustomCounterActions = ({type}:ActionsProps) => {
-    const {count, minCount, maxCount, startCount, error} = useSelector<AppRootStore, CustomCounterState>(state => state.customCounter)
+export const CustomCounterActions = ({type, changeType, count, maxCount, startCount, error}: ActionsProps) => {
     const dispatch = useDispatch()
 
     const increment = () => dispatch(incrementAC())
@@ -27,19 +30,18 @@ export const CustomCounterActions = ({type}:ActionsProps) => {
         dispatch(changeCountAC(startCount))
         localStorage.setItem("maxCount", JSON.stringify(maxCount));
         localStorage.setItem("startCount", JSON.stringify(startCount));
-        //changeType && changeType("counter")
+        changeType && changeType("superCounter")
     }
 
-    // const setSettingMode = () => {
-    //     changeType && changeType("setting")
-    // }
+    const setSettingMode = () => {
+        changeType && changeType("setting")
+    }
 
 
-    const isDisabled =  (startCount < 0) || error;
+    const isDisabled = (startCount < 0) || error;
     const incrementDisabled = count === maxCount || isDisabled
         || typeof count === 'string'
-    const resetDisabled = (count === startCount || ( count === minCount)
-        || isDisabled || typeof count === 'string');
+    const resetDisabled = (count === startCount || isDisabled || typeof count === 'string');
 
     if (type === "setting") {
         return (
@@ -54,7 +56,7 @@ export const CustomCounterActions = ({type}:ActionsProps) => {
         )
     }
 
-    if (type === "super") {
+    if (type === "superCounter") {
         return (<div className={styles.actions}>
             <Button disabled={incrementDisabled}
                     callback={increment}
@@ -64,7 +66,7 @@ export const CustomCounterActions = ({type}:ActionsProps) => {
                     title="RESET"/>
             <Button
                 disabled={isDisabled}
-                callback={()=>{}}
+                callback={setSettingMode}
                 title="SET"/>
         </div>)
     }

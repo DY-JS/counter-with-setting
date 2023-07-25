@@ -1,9 +1,7 @@
-import {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
+import { useEffect } from "react";
 import styles from "./Table.module.css";
 import Input from "../input/Input";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStore} from "../../state/state";
-import {CustomCounterState} from "../../state/customCounter/customCounterReducer";
+import {useDispatch} from "react-redux";
 import {
     changeMaxCountAC,
     changeStartCountAC, setErrorAC,
@@ -12,15 +10,15 @@ import {
 
 interface TableProps {
     type?: string
+    count: number | string
+    maxCount: number
+    startCount: number
+    error: boolean
 }
 
-export const CustomCounterTable = ({type}: TableProps) => {
-    const {count, minCount, maxCount, startCount, error} = useSelector<AppRootStore, CustomCounterState>(state => state.customCounter)
+export const CustomCounterTable = ({type, count, maxCount, startCount, error}: TableProps) => {
     const dispatch = useDispatch()
     const finalStyle = `${styles.table} ${count === maxCount || error ? styles.max : ''}`;
-
-
-    console.log('error', error)
 
     const settingProcess = () => {
        dispatch(setSettingMessageAC(`Set values and press 'SET'`));
